@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_detail_movie_details"
-        android:text="Batman released 18 may 1978 by Jerry Siegel, Joe Shuster, Mario Puzo. The most famaous actors are Christopher Reeve, Margot Kidder, Gene Hackman"
+        android:text="Batman released 18 may 1978 by Jerry Siegel, Joe Shuster, Mario Puzo. The most famaous actors are Christopher Reeve, Margot Kidder, Gene Hackman."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_detail_movie_name"
         android:textSize="16sp"/>
