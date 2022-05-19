@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.kemalurekli.cinema.model.MovieResult
 import com.kemalurekli.cinema.repo.MovieRepositoryInterface
 import com.kemalurekli.cinema.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val repository: MovieRepositoryInterface
 )

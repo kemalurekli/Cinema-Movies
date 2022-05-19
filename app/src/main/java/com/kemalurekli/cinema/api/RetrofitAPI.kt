@@ -12,5 +12,7 @@ interface RetrofitAPI {
     suspend fun searchMovie(
         @Query("t") searchQuery : String,
         @Query("apikey") apiKey :String = API_KEY
+
+
     ): Response<MovieResult>
 }

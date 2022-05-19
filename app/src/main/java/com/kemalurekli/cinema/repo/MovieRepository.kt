@@ -17,7 +17,7 @@ private val retrofitAPI: RetrofitAPI
                     return@let Resource.success(it)
                 } ?: Resource.error("Error", null)
             }else{
-                Resource.error("Error", null)
+                Resource.error("Error",null)
             }
         }catch (e : Exception){
             Resource.error("No Data", null)

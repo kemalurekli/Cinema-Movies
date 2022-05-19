@@ -33,9 +33,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:id="@+id/rvMovies"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="@+id/sb_movie"
         app:layout_constraintTop_toBottomOf="@+id/btn_search" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@id/rvMovies"
+        app:layout_constraintEnd_toEndOf="@id/rvMovies"
+        app:layout_constraintTop_toTopOf="@id/rvMovies"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rvMovies"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
