@@ -15,4 +15,12 @@ interface RetrofitAPI {
 
 
     ): Response<MovieResult>
+
+    @GET("/")
+    suspend fun searchMovieWithImdbId(
+        @Query("i") searchQuery : String,
+        @Query("apikey") apiKey :String = API_KEY
+
+
+    ): Response<MovieResult>
 }

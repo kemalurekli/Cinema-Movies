@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.kemalurekli.cinema.R
 import com.kemalurekli.cinema.model.MovieResult
+import com.kemalurekli.cinema.view.HomeFragmentDirections
 import javax.inject.Inject
 
 class MovieRecyclerAdapter @Inject constructor(
@@ -43,13 +45,19 @@ class MovieRecyclerAdapter @Inject constructor(
         val imageView = holder.itemView.findViewById<ImageView>(R.id.iv_movie)
         val nameText = holder.itemView.findViewById<TextView>(R.id.tv_movie_name)
         val movieGenreText = holder.itemView.findViewById<TextView>(R.id.tv_movie_genre)
-        val yearText = holder.itemView.findViewById<TextView>(R.id.tv_movie_year)
+        val descText = holder.itemView.findViewById<TextView>(R.id.tv_movie_plot)
         val movie = movies[position]
+
         holder.itemView.apply {
             glide.load(movie.Poster).into(imageView)
             nameText.text = movie.Title
-            movieGenreText.text = ": ${movie.Genre}"
-            yearText.text = "Year: ${movie.Year}"
+            movieGenreText.text = movie.Genre
+            descText.text = movie.Plot
+
+            setOnClickListener {
+                Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.imdbID))
+            }
+
         }
     }
 

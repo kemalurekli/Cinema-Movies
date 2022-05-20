@@ -11,34 +11,35 @@
         android:layout_height="120dp"
         android:scaleType="centerCrop"
         android:id="@+id/iv_movie"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@drawable/local_movies_24" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Batman"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
             android:id="@+id/tv_movie_name"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textStyle="italic"
             android:id="@+id/tv_movie_genre"
-            android:layout_margin="5dp"
-            android:text="Action, Adventure, Sci-Fi"
+            android:maxLength="25"
             android:textSize="16sp"
             android:maxLines="5" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Year : 1940"
-            android:id="@+id/tv_movie_year"
+            android:id="@+id/tv_movie_plot"
             android:layout_margin="5dp"
             android:textSize="14sp" />
     </LinearLayout>

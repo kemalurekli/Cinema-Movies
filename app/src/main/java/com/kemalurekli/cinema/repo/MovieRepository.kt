@@ -20,7 +20,22 @@ private val retrofitAPI: RetrofitAPI
                 Resource.error("Error",null)
             }
         }catch (e : Exception){
-            Resource.error("No Data", null)
+            Resource.error("Check Your Connection!", null)
+        }
+    }
+
+    override suspend fun searchMovieWithImdbId(movieString: String): Resource<MovieResult> {
+        return try {
+            val response = retrofitAPI.searchMovieWithImdbId(movieString)
+            if (response.isSuccessful){
+                response.body()?.let {
+                    return@let Resource.success(it)
+                } ?: Resource.error("Error", null)
+            }else{
+                Resource.error("Error",null)
+            }
+        }catch (e : Exception){
+            Resource.error("Check Your Connection!", null)
         }
     }
 }

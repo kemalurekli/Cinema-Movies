@@ -37,19 +37,17 @@ class HomeFragment @Inject constructor(
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[HomeFragmentViewModel::class.java]
-
+        binding.rvMovies.adapter = movieRecyclerAdapter
+        binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
         val view = binding.root
         return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.btnSearch.setOnClickListener {
-            //Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
-            viewModel.searchForMovies(binding.sbMovie.text.toString())
+            val userInputMovieName = binding.sbMovie.text.toString()
+            viewModel.searchForMovies(userInputMovieName)
             subscribeToObservers()
-            binding.rvMovies.adapter = movieRecyclerAdapter
-            binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
             hideKeyboard()
 
         }
@@ -60,10 +58,14 @@ class HomeFragment @Inject constructor(
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     val movieLists =  it.data
-                    if (movieLists != null) {
+                    if (movieLists != null && movieLists.Response.toBoolean()) {
                         movieRecyclerAdapter.movies = listOf(it.data)
-                    }else {
-                        Toast.makeText(requireContext(),it.message ?: "Error kemal",Toast.LENGTH_LONG).show()
+                        binding.tvFoundMessage.visibility = View.GONE
+                        binding.rvMovies.visibility = View.VISIBLE
+                    }else
+                    {
+                        binding.rvMovies.visibility = View.GONE
+                        binding.tvFoundMessage.visibility = View.VISIBLE
                     }
                 }
                 Status.ERROR -> {

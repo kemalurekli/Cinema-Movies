@@ -5,4 +5,6 @@
     <string name="search_movie">Search Movie</string>
     <string name="search">Search</string>
     <string name="movie_photo">Movie Photo</string>
+    <string name="movie_not_found">Movie not found!</string>
+    <string name="detail_error_message">Error! Try Again.</string>
 </resources>

@@ -22,5 +22,9 @@
         android:id="@+id/detailFragment"
         android:name="com.kemalurekli.cinema.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="imdbID"
+            app:argType="string" />
+    </fragment>
 </navigation>
