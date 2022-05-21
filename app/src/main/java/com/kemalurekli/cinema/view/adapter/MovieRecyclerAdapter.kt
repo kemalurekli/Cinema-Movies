@@ -48,8 +48,19 @@ class MovieRecyclerAdapter @Inject constructor(
         val descText = holder.itemView.findViewById<TextView>(R.id.tv_movie_plot)
         val movie = movies[position]
 
+
         holder.itemView.apply {
-            glide.load(movie.Poster).into(imageView)
+            when {
+                movie.Poster != "N/A" -> {
+                    glide.load(movie.Poster).into(imageView)
+                }
+                else -> {
+                    //Edit for local drawable. URI
+                    val defaultPicture = "https://icons-for-free.com/iconfiles/png/512/svg+cinema+doodle+film+film+roll+movie+movie+film+icon-1320165854732110438.png"
+                    glide.load(defaultPicture).into(imageView)
+                }
+            }
+
             nameText.text = movie.Title
             movieGenreText.text = movie.Genre
             descText.text = movie.Plot
