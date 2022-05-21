@@ -25,7 +25,6 @@ class MovieRecyclerAdapter @Inject constructor(
         override fun areItemsTheSame(oldItem: MovieResult, newItem: MovieResult): Boolean {
             return oldItem == newItem
         }
-
         override fun areContentsTheSame(oldItem: MovieResult, newItem: MovieResult): Boolean {
             return oldItem == newItem
         }
@@ -40,15 +39,12 @@ class MovieRecyclerAdapter @Inject constructor(
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_row, parent, false)
         return MovieViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val imageView = holder.itemView.findViewById<ImageView>(R.id.iv_movie)
         val nameText = holder.itemView.findViewById<TextView>(R.id.tv_movie_name)
         val movieGenreText = holder.itemView.findViewById<TextView>(R.id.tv_movie_genre)
         val descText = holder.itemView.findViewById<TextView>(R.id.tv_movie_plot)
         val movie = movies[position]
-
-
         holder.itemView.apply {
             when {
                 movie.Poster != "N/A" -> {
@@ -60,15 +56,12 @@ class MovieRecyclerAdapter @Inject constructor(
                     glide.load(defaultPicture).into(imageView)
                 }
             }
-
             nameText.text = movie.Title
             movieGenreText.text = movie.Genre
             descText.text = movie.Plot
-
             setOnClickListener {
                 Navigation.findNavController(it).navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.imdbID))
             }
-
         }
     }
 

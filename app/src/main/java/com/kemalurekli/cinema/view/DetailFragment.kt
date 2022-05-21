@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.kemalurekli.cinema.databinding.FragmentDetailBinding
 import com.kemalurekli.cinema.util.Status
 import com.kemalurekli.cinema.viewmodel.DetailFragmentViewModel
-import com.kemalurekli.cinema.viewmodel.HomeFragmentViewModel
 import javax.inject.Inject
 
 
@@ -23,12 +23,12 @@ class DetailFragment @Inject constructor(
     private val binding get() = _binding!!
     private lateinit var viewModel : DetailFragmentViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[DetailFragmentViewModel::class.java]
         val view = binding.root
@@ -46,6 +46,7 @@ class DetailFragment @Inject constructor(
             binding.swipeLayout.isRefreshing = false
         }
     }
+
     private fun getMovieWithId() {
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             when(it.status) {
@@ -69,6 +70,8 @@ class DetailFragment @Inject constructor(
                                 glide.load(defaultPicture).into(binding.ivDetailMovie)
                             }
                         }
+                        //This is for app bar title.
+                        (activity as AppCompatActivity).supportActionBar?.title = movie.Title
                         binding.tvDetailMovieName.text = movie.Title
                         binding.tvDetailMovieDetails.text = ("${movie.Title} released ${movie.Released}." +
                                 " The movie's run time ${movie.Runtime}. ${movie.Genre} as genre. " +
@@ -94,16 +97,18 @@ class DetailFragment @Inject constructor(
                     }
                 }
                 Status.LOADING -> {
-                    binding.progressBarDetailPage.visibility = View.VISIBLE
-                    binding.ivDetailMovie.visibility = View.GONE
-                    binding.tvDetailMovieName.visibility = View.GONE
-                    binding.tvDetailMovieDetails.visibility = View.GONE
-
+                    binding.apply {
+                        progressBarDetailPage.visibility = View.VISIBLE
+                        ivDetailMovie.visibility = View.GONE
+                        tvDetailMovieName.visibility = View.GONE
+                        tvDetailMovieDetails.visibility = View.GONE
+                    }
                 }
             }
         })
 
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

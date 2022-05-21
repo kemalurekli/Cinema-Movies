@@ -29,6 +29,5 @@ class HomeFragmentViewModel @Inject constructor(
             val response = repository.searchMovie(movieName)
             movies.value = response
         }
-
     }
 }

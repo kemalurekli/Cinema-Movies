@@ -20,22 +20,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Singleton
     @Provides
     fun injectRetrofitAPI () : RetrofitAPI {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).
         baseUrl(BASE_URL).build().create(RetrofitAPI::class.java)
     }
-
     @Singleton
     @Provides
     fun injectGlide (@ApplicationContext context: Context) = Glide.with(context).setDefaultRequestOptions(
         RequestOptions().placeholder(R.drawable.local_movies_24).error(R.drawable.local_movies_24)
     )
-
     @Singleton
     @Provides
     fun injectNormalRepo(api: RetrofitAPI) = MovieRepository(api) as MovieRepositoryInterface
-
 }
