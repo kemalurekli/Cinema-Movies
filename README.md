@@ -1,4 +1,4 @@
-# FavoriteNews-Retrofit-Room-Dependency-Injection
+# Cinema App
 
 This Project created using Retrofit, Glide, View Binding, Coroutine, Navigation (1 activity and fragments), ViewModel with MVVM architecture.
 There is Dagger-Hilt as Dependency Injection in the project.
