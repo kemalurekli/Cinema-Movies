@@ -6,10 +6,12 @@ There is Dagger-Hilt as Dependency Injection in the project.
 ### Installation
 
 - Create a object Util.kt in util folder.
+<pre>
         object Util {
             const val API_KEY = "your api key"
             const val BASE_URL = "https://www.omdbapi.com"
         }
+</pre>
 
 
 
